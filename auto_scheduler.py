@@ -1,3 +1,4 @@
+#%%
 import os
 import datetime
 import pandas as pd
@@ -26,7 +27,7 @@ def get_calendar_service():
                 creds.refresh(Request())
             else:
                 flow = InstalledAppFlow.from_client_secrets_file('credentials.json', SCOPES)
-                creds = flow.run_local_server(port=8080)
+                creds = flow.run_local_server(port=8080, prompt='consent')
             with open('token.json', 'w') as token:
                 token.write(creds.to_json())
         service = build('calendar', 'v3', credentials=creds)
@@ -104,3 +105,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+#%%
